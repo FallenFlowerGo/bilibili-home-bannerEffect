@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *,html{
+      margin: 0;
+      padding: 0;
+    }
+    body{
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .wrapper{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+    }
+    video {
+      height: 158px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <video class="video" loop autoplay src="19805b95-b162-4125-ac4a-d79a503851dd.webm" style="transform: translate(44px, 0);object-fit: cover;"></video>
+  </div>
+  <script>
+    const windowX = document.body.clientWidth; // body对象宽度
+    const wrapper = document.querySelector('.wrapper'); 
+    const video = document.getElementsByTagName('video')[0] || [];
+    wrapper.addEventListener('mouseenter', function(e) {
+      this.x = e.clientX || 0;
+      video.style.transform = 'none';
+    });
+    wrapper.addEventListener('mousemove', function(e) {
+      this._x = e.clientX || 0;
+      const dic = this._x - this.x;
+      const move = 44 + (dic/windowX) * 44;
+      video.style.transform = `translate(${move}px, 0)`;
+    });
+    wrapper.addEventListener('mouseleave', function(e) {
+      video.style.transform = 'translate(44px, 0)';
+      video.style.transition = 'all 0.3s';
+    });
+  </script>
+</body>
+</html>
